@@ -384,7 +384,7 @@ func (q *Connection) Login(username, password string) bool {
 	for _, value := range resp.Cookies() {
 		if value != nil {
 			cookie := *value
-			if cookie.Name == "SID" {
+			if cookie.Name == "SID" || (len(cookie.Name) >= 7 && cookie.Name[:7] == "QBT_SID") {
 				q.auth.LoggedIn = true
 				q.auth.Cookie = cookie
 				break
